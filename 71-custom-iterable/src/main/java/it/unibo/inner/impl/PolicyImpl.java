@@ -53,7 +53,7 @@ public class PolicyImpl<T> implements IterableWithPolicy<T>{
 
         @Override
         public boolean hasNext() {
-            while (this.pos < getLength() && !filter.test(elements[pos])) {
+            while (this.pos < getLength() && !filter.test(PolicyImpl.this.elements[pos])) {
                 this.pos++;
             }
             return this.pos < getLength();
@@ -61,7 +61,7 @@ public class PolicyImpl<T> implements IterableWithPolicy<T>{
 
         @Override
         public T next() {
-            return elements[this.pos++];
+            return PolicyImpl.this.elements[this.pos++];
         }
 
     }
