@@ -54,7 +54,15 @@ public final class Transformers {
      * @return A transformed list where each input element is replaced with the produced elements
      */
     public static <I, O> List<O> transform(final Iterable<I> base, final Function<I, O> transformer) {
-        return null;
+        List<O> output = new ArrayList<>();
+        for(final I in : base){
+            if(in.equals(null)){
+                output.add(null);
+            }else{
+                output.add(transformer.call(in));
+            }
+        }
+        return output;
     }
 
     /**
