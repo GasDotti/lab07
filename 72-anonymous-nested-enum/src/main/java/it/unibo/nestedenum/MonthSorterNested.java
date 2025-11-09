@@ -69,4 +69,38 @@ public final class MonthSorterNested implements MonthSorter {
             return Months.FromString(o1).days - Months.FromString(o2).days;
         }
     }
+
+    public enum Months {
+
+        JANUARY ("january"),
+        FEBRUARY ("february"),
+        MARCH ("march"),
+        APRIL ("april"),
+        MAY ("may"),
+        JUNE ("june"),
+        JULY ("july"),
+        AUGUST("august"),
+        SEPTEMBER("september"),
+        OCTOBER("october"),
+        NOVEMBER("november"),
+        DECEMBER("december");
+
+        private final String finalName;
+
+        private Months(String finalName){
+            this.finalName = finalName;
+        }
+        public Months FromString (String name){
+            for (Months m : Months.values()){
+                if(m.equals(name)){
+                    return m;
+                }
+            }
+            return null;
+        }
+        @Override
+        public String toString() {
+            return this.finalName;
+        }
+    }
 }
