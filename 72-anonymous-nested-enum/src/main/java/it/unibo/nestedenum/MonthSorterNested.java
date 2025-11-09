@@ -45,7 +45,7 @@ public final class MonthSorterNested implements MonthSorter {
         }
         public static Months FromString (String name){
             for (Months m : Months.values()){
-                if(m.equals(name)){
+                if(m.finalName.equals(name)){
                     return m;
                 }
             }
