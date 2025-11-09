@@ -54,7 +54,9 @@ public final class Transformers {
      * @return A transformed list where each input element is replaced with the produced elements
      */
     public static <I, O> List<O> transform(final Iterable<I> base, final Function<I, O> transformer) {
+        
         List<O> output = new ArrayList<>();
+
         for(final I in : base){
             if(in.equals(null)){
                 output.add(null);
@@ -62,6 +64,7 @@ public final class Transformers {
                 output.add(transformer.call(in));
             }
         }
+
         return output;
     }
 
@@ -112,7 +115,7 @@ public final class Transformers {
                 output.add(e);
             }
         }
-
+        
         return output;
     }
 
@@ -129,7 +132,7 @@ public final class Transformers {
      * @return A list containing only the elements that passed the test
      */
     public static <I> List<I> reject(final Iterable<I> base, final Function<I, Boolean> test) {
-
+        
         final List<I> output = new ArrayList<>();
 
         for(final var e : base){
