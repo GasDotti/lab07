@@ -21,31 +21,30 @@ public final class MonthSorterNested implements MonthSorter {
 
     public enum Months {
         
-        JANUARY (1, "january", 31),
-        FEBRUARY (2, "february", 28),
-        MARCH (3, "march", 31),
-        APRIL (4, "april", 30),
-        MAY (5, "may", 31),
-        JUNE (6, "june", 30),
-        JULY (7, "july", 31),
-        AUGUST(8, "august", 31),
-        SEPTEMBER(9, "september", 30),
-        OCTOBER(10, "october", 31),
-        NOVEMBER(11, "november", 30),
-        DECEMBER(12, "december", 31);
+        JANUARY ("january", 31),
+        FEBRUARY ("february", 28),
+        MARCH ("march", 31),
+        APRIL ("april", 30),
+        MAY ("may", 31),
+        JUNE ("june", 30),
+        JULY ("july", 31),
+        AUGUST("august", 31),
+        SEPTEMBER("september", 30),
+        OCTOBER("october", 31),
+        NOVEMBER("november", 30),
+        DECEMBER("december", 31);
 
-        private final int id;
         private final String finalName;
         private final int days;
 
-        private Months(final int id, final String finalName, final int days){
-            this.id = id;
+        private Months(final String finalName, final int days){
             this.finalName = finalName;
             this.days = days;
         }
         public static Months FromString (String name){
+            name.toLowerCase();
             for (Months m : Months.values()){
-                if(m.finalName.equals(name)){
+                if(m.finalName.equals(name) || m.finalName.contains(name)){
                     return m;
                 }
             }
@@ -60,7 +59,7 @@ public final class MonthSorterNested implements MonthSorter {
     private static class SortByMonthsOrder implements Comparator<String>{
         @Override
         public int compare(String o1, String o2) {
-            return Months.FromString(o1).id - Months.FromString(o2).id;
+            return Months.FromString(o1).ordinal() - Months.FromString(o2).ordinal();
         }
     }
     private static class SortByMonthsDays implements Comparator<String>{
