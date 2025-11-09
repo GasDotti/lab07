@@ -55,6 +55,18 @@ public final class MonthSorterNested implements MonthSorter {
         public String toString() {
             return this.finalName;
         }
+    }
 
+    private static class SortByMonthsOrder implements Comparator<String>{
+        @Override
+        public int compare(String o1, String o2) {
+            return Months.FromString(o1).id - Months.FromString(o2).id;
+        }
+    }
+    private static class SortByMonthsDays implements Comparator<String>{
+        @Override
+        public int compare(String o1, String o2) {
+            return Months.FromString(o1).days - Months.FromString(o2).days;
+        }
     }
 }
