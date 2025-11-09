@@ -11,12 +11,12 @@ public final class MonthSorterNested implements MonthSorter {
 
     @Override
     public Comparator<String> sortByDays() {
-        return null;
+        return new SortByMonthsDays();
     }
 
     @Override
     public Comparator<String> sortByOrder() {
-        return null;
+        return new SortByMonthsOrder();
     }
 
     public enum Months {
@@ -49,7 +49,7 @@ public final class MonthSorterNested implements MonthSorter {
                     return m;
                 }
             }
-            return null;
+            throw new IllegalArgumentException();
         }
         @Override
         public String toString() {
