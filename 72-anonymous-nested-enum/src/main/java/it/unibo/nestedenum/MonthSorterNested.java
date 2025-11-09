@@ -42,11 +42,20 @@ public final class MonthSorterNested implements MonthSorter {
             this.days = days;
         }
         public static Months FromString (String name){
-            name.toLowerCase();
+            name = name.toLowerCase();
+
+            Months output = null;
             for (Months m : Months.values()){
-                if(m.finalName.equals(name) || m.finalName.contains(name)){
-                    return m;
+                if (m.finalName == name || m.finalName.startsWith(name)){
+                    if (Objects.isNull(output)){
+                        output = m;
+                    } else {
+                        throw new IllegalArgumentException();
+                    }
                 }
+            }
+            if(Objects.nonNull(output)){
+                return output;
             }
             throw new IllegalArgumentException();
         }
